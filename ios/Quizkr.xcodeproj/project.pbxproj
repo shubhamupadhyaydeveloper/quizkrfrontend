@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* QuizkrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* QuizkrTests.m */; };
+		0C4716413B8A483C99F7CCE7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38624D83DBB3475CA87EF470 /* Nunito-Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-Quizkr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Quizkr.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1D1EC8719B094102AB13E1D9 /* Fredoka_Condensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EA5C6BD50DC445E9CC8A7DF /* Fredoka_Condensed-Medium.ttf */; };
+		31AD2A9015EC40FBB290996F /* Fredoka_Condensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E88423A5F754472BB27F2F02 /* Fredoka_Condensed-Light.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-Quizkr-QuizkrTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Quizkr-QuizkrTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A58F883BA6154B5F93436E11 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24B7143AEDD945339214DDC1 /* Nunito-Medium.ttf */; };
+		C1170F11328F1913B6D98379 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		D7941B47E91F463B921A3ECE /* Fredoka_Condensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAE5F027C7D14A81AD0A1CE2 /* Fredoka_Condensed-Regular.ttf */; };
+		DEF44EFE2E28489E88295FAC /* Fredoka_Condensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B05987CAC624DA9BEDED840 /* Fredoka_Condensed-Bold.ttf */; };
+		EABBB891F99D47819E545B58 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EECFCFFD4B34EAABC422BC3 /* Nunito-Light.ttf */; };
+		F9364F1EF50E438B8962D8F7 /* Bungee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2BEFB26D24487E86375B22 /* Bungee-Regular.ttf */; };
+		FD046BA8AF4B41DEBAE07D52 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 552D5C823CC54A3EB1339B01 /* Nunito-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +48,21 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Quizkr/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Quizkr/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Quizkr-QuizkrTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Quizkr-QuizkrTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24B7143AEDD945339214DDC1 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Medium.ttf"; path = "../src/assets/fonts/Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		2B05987CAC624DA9BEDED840 /* Fredoka_Condensed-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka_Condensed-Bold.ttf"; path = "../src/assets/fonts/Fredoka_Condensed-Bold.ttf"; sourceTree = "<group>"; };
+		38624D83DBB3475CA87EF470 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Regular.ttf"; path = "../src/assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Quizkr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizkr.debug.xcconfig"; path = "Target Support Files/Pods-Quizkr/Pods-Quizkr.debug.xcconfig"; sourceTree = "<group>"; };
+		3EECFCFFD4B34EAABC422BC3 /* Nunito-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Light.ttf"; path = "../src/assets/fonts/Nunito-Light.ttf"; sourceTree = "<group>"; };
+		552D5C823CC54A3EB1339B01 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../src/assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Quizkr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizkr.release.xcconfig"; path = "Target Support Files/Pods-Quizkr/Pods-Quizkr.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Quizkr-QuizkrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizkr-QuizkrTests.debug.xcconfig"; path = "Target Support Files/Pods-Quizkr-QuizkrTests/Pods-Quizkr-QuizkrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Quizkr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Quizkr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EA5C6BD50DC445E9CC8A7DF /* Fredoka_Condensed-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka_Condensed-Medium.ttf"; path = "../src/assets/fonts/Fredoka_Condensed-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Quizkr/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Quizkr-QuizkrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizkr-QuizkrTests.release.xcconfig"; path = "Target Support Files/Pods-Quizkr-QuizkrTests/Pods-Quizkr-QuizkrTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD2BEFB26D24487E86375B22 /* Bungee-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Bungee-Regular.ttf"; path = "../src/assets/fonts/Bungee-Regular.ttf"; sourceTree = "<group>"; };
+		CAE5F027C7D14A81AD0A1CE2 /* Fredoka_Condensed-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka_Condensed-Regular.ttf"; path = "../src/assets/fonts/Fredoka_Condensed-Regular.ttf"; sourceTree = "<group>"; };
+		E88423A5F754472BB27F2F02 /* Fredoka_Condensed-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Fredoka_Condensed-Light.ttf"; path = "../src/assets/fonts/Fredoka_Condensed-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -98,6 +117,23 @@
 			name = Quizkr;
 			sourceTree = "<group>";
 		};
+		144F1751385343CEA8C8A6B2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD2BEFB26D24487E86375B22 /* Bungee-Regular.ttf */,
+				2B05987CAC624DA9BEDED840 /* Fredoka_Condensed-Bold.ttf */,
+				CAE5F027C7D14A81AD0A1CE2 /* Fredoka_Condensed-Regular.ttf */,
+				552D5C823CC54A3EB1339B01 /* Nunito-Bold.ttf */,
+				38624D83DBB3475CA87EF470 /* Nunito-Regular.ttf */,
+				E88423A5F754472BB27F2F02 /* Fredoka_Condensed-Light.ttf */,
+				6EA5C6BD50DC445E9CC8A7DF /* Fredoka_Condensed-Medium.ttf */,
+				3EECFCFFD4B34EAABC422BC3 /* Nunito-Light.ttf */,
+				24B7143AEDD945339214DDC1 /* Nunito-Medium.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +160,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				144F1751385343CEA8C8A6B2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -245,6 +282,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F9364F1EF50E438B8962D8F7 /* Bungee-Regular.ttf in Resources */,
+				DEF44EFE2E28489E88295FAC /* Fredoka_Condensed-Bold.ttf in Resources */,
+				D7941B47E91F463B921A3ECE /* Fredoka_Condensed-Regular.ttf in Resources */,
+				FD046BA8AF4B41DEBAE07D52 /* Nunito-Bold.ttf in Resources */,
+				0C4716413B8A483C99F7CCE7 /* Nunito-Regular.ttf in Resources */,
+				31AD2A9015EC40FBB290996F /* Fredoka_Condensed-Light.ttf in Resources */,
+				1D1EC8719B094102AB13E1D9 /* Fredoka_Condensed-Medium.ttf in Resources */,
+				EABBB891F99D47819E545B58 /* Nunito-Light.ttf in Resources */,
+				A58F883BA6154B5F93436E11 /* Nunito-Medium.ttf in Resources */,
+				C1170F11328F1913B6D98379 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +631,14 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -649,7 +703,13 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
