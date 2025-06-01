@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { GenerateNavigationType } from "../../navigation/types";
+import { GenerateNavigationType } from "../../utils/types";
 import { useEffect, useState } from "react";
 import { jsonrepair } from "jsonrepair";
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
@@ -7,6 +7,7 @@ import { View } from "react-native";
 import GoBack from "../../components/GoBack";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, LinearTransition } from "react-native-reanimated";
 import { horizontalScale } from "../../utils/responsive";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const optionHeadingColor = '#787D86'
 const optionHeadingbg = '#F2F3F5'
@@ -23,6 +24,7 @@ const QuizPageScreen = () => {
     const { data } = route.params;
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
     const [quiz, setQuiz] = useState<DataType[]>([]);
+    const insets = useSafeAreaInsets()
 
     const QuizProgressBar = ({ currentQuizIndex, totalQuiz }: { currentQuizIndex: number, totalQuiz: number }) => {
         return (
@@ -61,13 +63,13 @@ const QuizPageScreen = () => {
     const RenderOptionContainer = () => {
         const [activeIndex, setActiveIndex] = useState<number | null>(null)
         return (
-            <View style={{ marginTop: 20, gap: 20 }}>
+            <View style={{ marginTop: 20, gap: 20,flex : 1 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                     <GoBack />
                     <View style={{ flex: 1 }}>
-                        <QuizProgressBar currentQuizIndex={currentQuizIndex + 1} totalQuiz={quiz.length} />
+                        <QuizProgressBar currentQuizIndex={currentQuizIndex} totalQuiz={quiz.length} />
                     </View>
-                    <Text style={{ fontFamily: 'Nunito-Bold', color: 'black', fontSize: 12 }}>{currentQuizIndex + 1} / {quiz.length}</Text>
+                    <Text style={{ color: 'white', fontFamily: 'Nunito-Bold', fontSize: 16 }}>{currentQuizIndex + 1}/{quiz.length}</Text>
                 </View>
                 <Text style={styles.headingText}>{quiz[currentQuizIndex]?.question}</Text>
                 <View style={{ gap: 25 }}>
@@ -78,7 +80,7 @@ const QuizPageScreen = () => {
                                     <Text style={{ color: optionHeadingColor, fontFamily: 'Nunito-Bold', fontSize: 16 }}>{index + 1}</Text>
                                 </View>
                                 <View style={{ width: horizontalScale(250) }}>
-                                    <Text style={{ color: activeIndex === index ? 'white' : optionTitleColor, fontFamily: 'Nunito-Bold', fontSize: 16, }}>{item}</Text>
+                                    <Text style={{ color: activeIndex === index ? 'black' : 'white', fontFamily: 'Nunito-Bold', fontSize: 16, }}>{item}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
@@ -89,8 +91,8 @@ const QuizPageScreen = () => {
     }
 
     return (
-        <View style={{ paddingHorizontal: 20, flex: 1 }}>
-            {/* Prevent rendering errors if quiz is undefined */}
+        <View style={{ paddingHorizontal: 20, flex: 1 , paddingTop: insets.top + 20, gap: 20 }}>
+
             {quiz.length > 0 ? (
                 <RenderOptionContainer />
             ) : (
@@ -100,7 +102,7 @@ const QuizPageScreen = () => {
             )}
 
             <View style={{ flex: 1, justifyContent: 'flex-end', paddingVertical: 20 }}>
-                <TouchableOpacity activeOpacity={.8} onPress={() => setCurrentQuizIndex(prev => prev + 1)} style={{ padding: 15, backgroundColor: '#8EA3A6', borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <TouchableOpacity activeOpacity={.8} onPress={() => setCurrentQuizIndex(prev => prev + 1)} style={{ padding: 15, backgroundColor: '#16C47F', borderRadius: 15, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ color: 'white', textAlign: 'center', fontSize: 12, fontFamily: 'Bungee-Regular', lineHeight: 15 }}>Continue</Text>
                 </TouchableOpacity>
             </View>
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     headingText: {
         fontFamily: 'Nunito-Bold',
         fontSize: 22,
-        color: 'black'
+        color: 'white'
     },
     container: {
         flex: 1,

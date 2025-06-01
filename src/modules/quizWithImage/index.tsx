@@ -7,6 +7,7 @@ import { horizontalScale, verticalScale } from '../../utils/responsive';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import Clipboard from '@react-native-clipboard/clipboard';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import IcoIcons from 'react-native-vector-icons/Ionicons'
 
 const QuizWithImage = () => {
   const [cameraImage, setCameraImage] = useState<any>('')
@@ -74,53 +75,77 @@ const QuizWithImage = () => {
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-
+    <View style={{ flex: 1 }}>
       <View style={{ marginTop: 20, justifyContent: 'center', alignItems: "center", marginBottom: 20 }}>
-        <View style={styles.emptyImageContainer}>
-          <Text style={styles.emptyImageContainerText}>No Image Selected</Text>
-        </View>
+        {cameraImage ? (
+
+          <View style={{ position: 'relative' }}>
+            <TouchableOpacity style={[styles.container, {
+              backgroundColor: 'red',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              position: 'absolute',
+              zIndex: 10,
+              right: 0,
+              top: -verticalScale(10),
+              width: 40,
+              height: 40,
+              alignItems: 'center',
+            }]}>
+              <View >
+                <IcoIcons name='trash-sharp' size={20} color={'white'} />
+              </View>
+            </TouchableOpacity>
+            <Image
+              source={{ uri: cameraImage }}
+              style={{
+                width: horizontalScale(300),
+                height: verticalScale(300),
+                borderRadius: 12, borderColor: '#d2d2d2',
+                borderWidth: 1,
+              }}
+            />
+          </View>
+        ) : (
+          <View style={styles.emptyImageContainer}>
+            <Text style={styles.emptyImageContainerText}>No Image Selected</Text>
+          </View>
+        )}
       </View>
 
-      <View style={{ gap: 10, flexDirection: 'row', }}>
-        <TouchableOpacity activeOpacity={.8} style={{ flex: 1 }} onPress={handleTakeImage}>
-          <View style={{ padding: 15, borderRadius: 24, backgroundColor: '#0D9276', }}>
+      <View style={{ gap: 10 }}>
+        <TouchableOpacity activeOpacity={.8} onPress={handleTakeImage}>
+          <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
             <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Click Image</Text>
           </View>
         </TouchableOpacity>
         {/* <Text style={{ textAlign: 'center', fontFamily: 'Nunito-Bold', fontSize: 14 }}>Or</Text> */}
-        <TouchableOpacity activeOpacity={.8} style={{ flex: 1 }} onPress={handleSelectImage}>
-          <View style={{ padding: 15, borderRadius: 24, backgroundColor: '#0D9276', }}>
+        <TouchableOpacity activeOpacity={.8} onPress={handleSelectImage}>
+          <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
             <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Select Image</Text>
           </View>
         </TouchableOpacity>
-      </View>
 
-
-      <View>
-        {cameraImage ? (
-          <Image
-            source={{ uri: cameraImage }}
-            style={{
-              width: 320,
-              height: 400
-            }}
-          />
-        ) : null}
-
-      </View>
-
-      <Button title='get Text' onPress={() => handleExtractText(cameraImage)} />
-
-      <View style={{ flex: 1, justifyContent: 'flex-end', paddingVertical: verticalScale(50) }} >
-        <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-          <View />
-          <TouchableOpacity activeOpacity={.8} style={{ width: horizontalScale(140), }} >
-            <View style={{ paddingVertical: 10, backgroundColor: '#0D9276', borderRadius: 20, paddingHorizontal: 20, flexDirection: 'row', gap: 5, }}>
-              <MaterialIcon name='timer' color={'white'} size={22} />
-              <Text style={{ color: 'white' }}>Quiz me</Text>
+        {cameraImage && (
+          <TouchableOpacity activeOpacity={.8} onPress={() => handleExtractText(cameraImage)}>
+            <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
+              <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Get Text</Text>
             </View>
           </TouchableOpacity>
+        )}
+      </View>
+
+
+
+      <View style={{ flex: 1, justifyContent: 'flex-end', }} >
+        <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+          <View />
+          <View style={[styles.buttonContainer]}>
+            <TouchableOpacity style={styles.quizButton}>
+              <MaterialIcon name='timer' color={'white'} size={22} />
+              <Text style={{ color: 'white', fontWeight: 'bold' }}>Quiz</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
@@ -163,8 +188,7 @@ const QuizWithImage = () => {
           </View>
         </View>
       </Modal>
-
-    </ScrollView>
+    </View>
   )
 }
 
@@ -182,7 +206,7 @@ const styles = StyleSheet.create({
   },
   emptyImageContainer: {
     width: horizontalScale(200),
-    height: verticalScale(200),
+    height: verticalScale(300),
     borderRadius: 12
     , borderColor: '#d2d2d2',
     borderWidth: 1,
@@ -193,6 +217,21 @@ const styles = StyleSheet.create({
   emptyImageContainerText: {
     fontFamily: 'Bungee-Regular',
     fontSize: 12
-  }
-
+  },
+  buttonContainer: {
+    padding: 16,
+    borderTopWidth: 1,
+    backgroundColor: '#000',
+  },
+  quizButton: {
+    paddingVertical: 12,
+    backgroundColor: '#0D9276',
+    borderRadius: 30,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    gap: 8,
+  },
 })

@@ -1,58 +1,48 @@
 import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { BottomTabNavigationType } from '../types'
-import { horizontalScale, verticalScale } from '../../utils/responsive'
+import { BottomTabNavigationType } from '../../utils/types'
+import { horizontalScale, iosDevice, verticalScale } from '../../utils/responsive'
 import HomeScreen from '../../modules/home'
 import GenerateScreen from '../../modules/generate'
 import SavedScreen from '../../modules/saved'
-import AboutScreen from '../../modules/about'
 import BrainIcon from '../../assets/rawsvg/brainIcon.svg';
 import SavedIcon from '../../assets/rawsvg/saveIcon.svg'
 import AboutIcon from '../../assets/rawsvg/aboutIcon.svg'
-import { Colors } from '../../utils/Constants'
+import FlameIcon from '../../assets/rawsvg/flame.svg'
+import { Colors } from '../../utils/constants'
 import HomeFillIcon from '../../svg/home/homeFill'
 import HomeOutlineIcon from '../../svg/home/homeOutline'
-import LinearGradient from 'react-native-linear-gradient'
-
-const { width } = Dimensions.get('screen')
+import PremiumScreen from '../../modules/premium'
 
 const BottomTabNavigation = () => {
     const BottomTab = createBottomTabNavigator<BottomTabNavigationType>()
+
     return (
         <BottomTab.Navigator
             initialRouteName='Home'
             screenOptions={{
                 headerShown: false,
                 tabBarInactiveTintColor: '#ffffff',
-                tabBarActiveTintColor: 'black',
+                tabBarActiveTintColor: '#16C47F',
                 tabBarStyle: {
-                    position: "absolute", 
-                    marginBottom: verticalScale(20),
-                    width: horizontalScale(250), 
-                    height: verticalScale(70),
-                    backgroundColor: "#16C47F", 
-                    borderRadius: 26,
+                    height: iosDevice ? verticalScale(70) : verticalScale(60),
+                    backgroundColor: Colors.lightText,
                     paddingTop: verticalScale(13),
-                    marginLeft: horizontalScale(width / 5.5),
                     borderColor: "#dadada",
                     borderTopWidth: 0,
-                    shadowColor: "#000", 
+                    shadowColor: "#000",
                     shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: 0.25, 
-                    shadowRadius: 4, 
-                    elevation: 5, 
-                    
+                    shadowOpacity: 0.25,
+                    shadowRadius: 4,
+                    elevation: 5,
                 },
                 tabBarLabelStyle: {
                     fontSize: 10,
                     fontFamily: 'Fredoka_Condensed-Bold',
                     display: 'none'
                 },
-                animation: 'none',
             }}
-
-
         >
             <BottomTab.Screen
                 name='Home'
@@ -61,7 +51,7 @@ const BottomTabNavigation = () => {
                     tabBarButton: (props) => <Pressable {...props} />,
                     title: "Home",
                     tabBarIcon: ({ focused, color }) => (
-                        focused ? <HomeFillIcon size={horizontalScale(28)} color='' /> : <HomeOutlineIcon color='white' size={horizontalScale(28)} />
+                        focused ? <HomeFillIcon size={horizontalScale(28)} color={color} /> : <HomeOutlineIcon color={color} size={horizontalScale(28)} />
                     ),
                 }}
             />
@@ -72,18 +62,7 @@ const BottomTabNavigation = () => {
                     tabBarButton: (props) => <Pressable {...props} />,
                     title: "Generate",
                     tabBarIcon: ({ color, focused }) => (
-                        <BrainIcon width={horizontalScale(28)} height={verticalScale(28)} fill={focused ? 'black' : '#ffffff'} />
-                    )
-                }}
-            />
-            <BottomTab.Screen
-                name="About"
-                component={AboutScreen}
-                options={{
-                    tabBarButton: (props) => <Pressable {...props} />,
-                    title: "About",
-                    tabBarIcon: ({ color, focused }) => (
-                        <AboutIcon width={horizontalScale(30)} height={verticalScale(30)} fill={focused ? 'black' : '#ffffff'} />
+                        <BrainIcon width={horizontalScale(28)} height={verticalScale(28)} fill={color} />
                     )
                 }}
             />
@@ -94,7 +73,18 @@ const BottomTabNavigation = () => {
                     tabBarButton: (props) => <Pressable {...props} />,
                     title: "Saved",
                     tabBarIcon: ({ color, focused }) => (
-                        <SavedIcon width={horizontalScale(26)} height={verticalScale(26)} fill={focused ? 'black' : '#ffffff'} />
+                        <SavedIcon width={horizontalScale(26)} height={verticalScale(26)} fill={color} />
+                    )
+                }}
+            />
+            <BottomTab.Screen
+                name="Premium"
+                component={PremiumScreen}
+                options={{
+                    tabBarButton: (props) => <Pressable {...props} />,
+                    title: "Premium",
+                    tabBarIcon: ({ color, focused }) => (
+                        <FlameIcon width={horizontalScale(30)} height={verticalScale(30)} fill={color} />
                     )
                 }}
             />

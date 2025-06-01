@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { RootStackNavigationType } from '../types'
+import { RootStackNavigationType } from '../../utils/types'
 import BottomTabNavigation from '../bottom-tabs'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
+import AuthStackNavigation from '../auth'
 
 
 const RootStackNavigation = () => {
@@ -14,6 +15,10 @@ const RootStackNavigation = () => {
             <RootStack.Screen
                 name='App'
                 component={BottomTabNavigation}
+            />
+            <RootStack.Screen
+                name='Auth'
+                component={AuthStackNavigation}
             />
         </RootStack.Navigator>
     )

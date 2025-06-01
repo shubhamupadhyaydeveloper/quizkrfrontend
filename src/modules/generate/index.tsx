@@ -9,22 +9,22 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import { BottomTabNavigationType, GenerateNavigationType } from '../../navigation/types';
+import { BottomTabNavigationType, GenerateNavigationType } from '../../utils/types';
 
 
 const GenerateScreen = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<BottomTabNavigationType, 'Generate'>>();
 
-  const tabHiddenRoutes = ['QuizPage'];
+  // const tabHiddenRoutes = ['QuizPage'];
 
-  React.useLayoutEffect(() => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? 'QuizPage'
+  // React.useLayoutEffect(() => {
+  //   const routeName = getFocusedRouteNameFromRoute(route) ?? 'QuizPage'
 
-    if (tabHiddenRoutes.includes(routeName)) {
-      navigation.setOptions({ tabBarStyle: { display: 'none' } });
-    }  
-  }, [navigation, route]);
+  //   if (tabHiddenRoutes.includes(routeName)) {
+  //     navigation.setOptions({ tabBarStyle: { display: 'none' } });
+  //   }  
+  // }, [navigation, route]);
 
   const Stack = createNativeStackNavigator<GenerateNavigationType>();
 

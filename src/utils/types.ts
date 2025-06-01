@@ -9,11 +9,17 @@ export type BottomTabNavigationType = {
   Home: undefined,
   Generate: NavigatorScreenParams<GenerateNavigationType>,
   Saved: undefined,
-  About: undefined
+  Premium: undefined,
+  Profile: undefined
 }
 
 export type RootStackNavigationType = {
   App: NavigatorScreenParams<BottomTabNavigationType>,
-  Auth: undefined,
+  Auth: NavigatorScreenParams<AuthStackNavigationType>,
   Splash: undefined
+}
+
+export type AuthStackNavigationType = {
+  Login: undefined,
+  Register: undefined,
 }

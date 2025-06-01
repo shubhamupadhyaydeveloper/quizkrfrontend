@@ -3,17 +3,17 @@ import React from 'react'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native'
 
-const GoBack = () => {
+const GoBack = ({changeIcon}:{changeIcon?:boolean}) => {
     const navigation = useNavigation()
     return (
-        <TouchableOpacity activeOpacity={.8} onPress={() => navigation.goBack()}>
-            <View style={styles.container}>
-                <AntDesignIcon name='arrowleft' size={20} color={'black'} />
+        <TouchableOpacity style={styles.container} activeOpacity={.8} onPress={() => navigation.goBack()}>
+            <View>
+                <AntDesignIcon name={changeIcon ? 'arrowleft' : 'close' } size={20} color={'black'} />
             </View>
-        </TouchableOpacity>
-    )
+        </TouchableOpacity> 
+    ) 
 }
-
+  
 export default GoBack;
 
 const styles = StyleSheet.create({

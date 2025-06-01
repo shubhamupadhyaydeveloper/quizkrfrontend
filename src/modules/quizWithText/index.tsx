@@ -16,15 +16,16 @@ import {
 import React, { useEffect, useState } from 'react'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { verticalScale } from '../../utils/responsive';
-import { screenHeight } from '../../utils/Constants';
+import { screenHeight } from '../../utils/constants';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { GenerateNavigationType } from '../../navigation/types';
+import { GenerateNavigationType } from '../../utils/types';
 import LottieView from 'lottie-react-native';
 import { mmkvStorage } from '../../utils/mmkvstore';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import { jsonrepair } from "jsonrepair";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 
 const apiKey = 'AIzaSyBtMByO1hrHxfA6KIZF-RTMkquFCqZhqqA';
@@ -102,69 +103,94 @@ const QuizWithText = () => {
 
 
   return (
-    <View style={{ flex: 1 }}>
 
-      <TextInput
-        value={input}
-        onChangeText={e => handleTextInput(e)}
-        multiline
-        numberOfLines={50}
-        style={{
-          color: 'white',
-          minHeight: verticalScale(screenHeight * .72),
-          maxHeight: verticalScale(screenHeight * .72),
-          textAlignVertical: 'top',
-          padding: 10,
-        }}
-        placeholder='Write any Context here to generate Questions'
-        placeholderTextColor={'white'}
-      />
-     <View>
-       <Text style={{fontSize : 14,color : "white"}}>button</Text>
-     </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: '#000' }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={insets.top + 40}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{ flex: 1 }}>
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ padding: 16 }}>
+            <TextInput
+              value={input}
+              onChangeText={handleTextInput}
+              multiline
+              style={{
+                color: 'white',
+                minHeight: verticalScale(screenHeight * 0.7),
+                maxHeight: verticalScale(screenHeight * 0.7),
+                textAlignVertical: 'top',
+                padding: 10,
+                borderRadius: 10,
+              }}
+              placeholder='Write any Context here to generate Questions'
+              placeholderTextColor='white'
+            />
+          </ScrollView>
 
-      <Modal
-        isVisible={isLoading}
-        backdropOpacity={.4}
-      >
-        <View style={styles.modalContainer}>
-          <View style={{ position: 'relative' }}>
-            <LottieView speed={1.7} source={require('../../assets/gif/loader.json')} autoPlay loop style={{ width: 300, height: 300 }} />
+
+          <View style={[styles.buttonContainer]}>
+            <TouchableOpacity onPress={handleSubmit} style={styles.quizButton}>
+               <MaterialIcon name='timer' color={'white'} size={22} />
+              <Text style={{ color: 'white', fontWeight: 'bold' }}>Quiz</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </Modal>
-    </View>
 
+
+          <Modal
+            isVisible={isLoading}
+            backdropOpacity={0.4}
+            animationIn={'fadeIn'}
+            animationOut={'fadeOut'}
+          >
+            <View style={styles.modalContainer}
+            >
+              <LottieView
+                speed={1.7}
+                source={require('../../assets/gif/loader.json')}
+                autoPlay
+                loop
+                style={{ width: 300, height: 300 }}
+              />
+            </View>
+          </Modal>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   )
+
 }
 
 export default QuizWithText;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 10,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
+
   buttonContainerKeyboardVisible: {
     // bottom: 10, // Move up when keyboard is open
   },
-  quizButton: {
-    paddingVertical: 10,
-    backgroundColor: '#0D9276',
-    borderRadius: 20,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    gap: 5,
-  },
+
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonContainer: {
+    padding: 16,
+    borderTopWidth: 1,
+    borderColor: '#333',
+    backgroundColor: '#000',
+  },
+  quizButton: {
+    paddingVertical: 12,
+    backgroundColor: '#0D9276',
+    borderRadius: 30,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    gap: 8,
+  },
+
 });

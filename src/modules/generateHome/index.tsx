@@ -10,15 +10,15 @@ import GoBack from '../../components/GoBack';
 import Filters from '../../components/Filters';
 
 export type FilterValuesTypes = {
-    noOfQuestions: number;
+    noOfQuestions: string;
     difficulty: string;
     type: "Text" | "Image" | "Pdf";
 }
 
 const GoogleGiminiScreen = () => {
     const [values, setValues] = useState<FilterValuesTypes>({
-        noOfQuestions: 5,
-        difficulty: 'easy',
+        difficulty: 'Hard 🔥',
+        noOfQuestions: 'Only 5',
         type: 'Text'
     })
     const insets = useSafeAreaInsets()
@@ -34,15 +34,14 @@ const GoogleGiminiScreen = () => {
         }
     }
 
-    const handleValuesChange = (item : FilterValuesTypes) => {
+    const handleValuesChange = (item: FilterValuesTypes) => {
 
     }
 
     return (
         <SafeAreaView style={{ paddingHorizontal: 10, gap: 10, flex: 1, paddingTop: 20 }}>
-            {/* <GoBack /> */}
-            {/* <HorizontalSlider data={['Text', 'Image', 'Pdf']} onChange={setCurrentIndex} /> */}
-            <Filters onValueChange={setValues} />
+
+            <Filters defaultValues={values} onValueChange={setValues} />
             <RenderActiveComponent />
 
         </SafeAreaView>

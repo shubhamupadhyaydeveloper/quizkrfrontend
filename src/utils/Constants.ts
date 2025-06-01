@@ -15,6 +15,11 @@ export enum Colors {
   lightText = "#222",
   background = '#fff',
   text = '#222',
+  color1 = "#2A3B2F",
+  color2 = "#1A241F",
+  color3 = "#38e07b",
+  color4 = "#111714"
+  // text-gray-400 
 }
 
 export const formatDate = (dateString: string): string => {
@@ -27,3 +32,7 @@ export const formatDate = (dateString: string): string => {
   return `${day} ${month}, ${year}`;
 };
 
+export const loginImage = require('../assets/png/login.png')
+export const signupImage = require('../assets/png/signup.png')
+export const googleIconImage = require('../assets/png/google.png')
+export const splashImage = require('../assets/png/splash.png')
