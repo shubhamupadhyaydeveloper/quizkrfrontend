@@ -130,12 +130,17 @@ const QuizWithText = () => {
           </ScrollView>
 
 
+
           <View style={[styles.buttonContainer]}>
+            <TouchableOpacity onPress={handleRemove}>
+              <Text style={{ color: 'white' }}>Clear</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleSubmit} style={styles.quizButton}>
-               <MaterialIcon name='timer' color={'white'} size={22} />
+              <MaterialIcon name='timer' color={'white'} size={22} />
               <Text style={{ color: 'white', fontWeight: 'bold' }}>Quiz</Text>
             </TouchableOpacity>
           </View>
+
 
 
           <Modal
@@ -176,6 +181,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
     borderTopWidth: 1,
     borderColor: '#333',

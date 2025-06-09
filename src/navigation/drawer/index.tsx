@@ -5,6 +5,7 @@ import RootStackNavigation from '../root-stack'
 import { DefaultTheme, NavigationContainer, useNavigation } from '@react-navigation/native'
 import { horizontalScale, verticalScale } from '../../utils/responsive'
 import ProfilePage from '../../modules/profile'
+import { ScrollContextProvider } from '../../context/ScrollContext'
 
 const DrawerNavigation = () => {
     const Drawer = createDrawerNavigator()
@@ -70,17 +71,19 @@ const DrawerNavigation = () => {
 
 
     return (
-        <NavigationContainer theme={myTheme}>
-            <Drawer.Navigator
-                drawerContent={props => <DrawerContent {...props} />}
-                screenOptions={{
-                    headerShown: false,
-                    drawerType: 'slide'
-                }}>
-                <Drawer.Screen name="Root" component={RootStackNavigation} />
-                <Drawer.Screen name="Profile" component={ProfilePage} />
-            </Drawer.Navigator>
-        </NavigationContainer>
+        <ScrollContextProvider>
+            <NavigationContainer theme={myTheme}>
+                <Drawer.Navigator
+                    drawerContent={props => <DrawerContent {...props} />}
+                    screenOptions={{
+                        headerShown: false,
+                        drawerType: 'slide'
+                    }}>
+                    <Drawer.Screen name="Root" component={RootStackNavigation} />
+                    <Drawer.Screen name="Profile" component={ProfilePage} />
+                </Drawer.Navigator>
+            </NavigationContainer>
+        </ScrollContextProvider>
     )
 }
 

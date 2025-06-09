@@ -8,7 +8,13 @@ import AuthSignUpScreen from '../../modules/signUp'
 const AuthStackNavigation = () => {
   const AuthStack = createNativeStackNavigator<AuthStackNavigationType>()
   return (
-    <AuthStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
+    <AuthStack.Navigator
+      screenOptions={{ 
+        headerShown: false,
+        animation: 'ios_from_right',
+      }}
+      initialRouteName='Login'
+    >
       <AuthStack.Screen
         name='Login'
         component={AuthLoginScreen}

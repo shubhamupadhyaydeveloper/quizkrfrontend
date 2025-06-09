@@ -5,13 +5,14 @@ import { RootStackNavigationType } from '../../utils/types'
 import BottomTabNavigation from '../bottom-tabs'
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
 import AuthStackNavigation from '../auth'
+import SplashScreen from '@src/modules/splash'
 
 
 const RootStackNavigation = () => {
     const RootStack = createNativeStackNavigator<RootStackNavigationType>()
 
     return (
-        <RootStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='App'>
+        <RootStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Splash'>
             <RootStack.Screen
                 name='App'
                 component={BottomTabNavigation}
@@ -20,6 +21,12 @@ const RootStackNavigation = () => {
                 name='Auth'
                 component={AuthStackNavigation}
             />
+            <RootStack.Screen
+                name='Splash'
+                component={SplashScreen}
+            />
+
+
         </RootStack.Navigator>
     )
 }

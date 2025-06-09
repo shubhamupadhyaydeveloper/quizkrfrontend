@@ -1,69 +1,126 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { useAnimatedKeyboard, useAnimatedProps, useAnimatedStyle, useSharedValue, withClamp, withRepeat, withSequence, withSpring, withTiming } from 'react-native-reanimated';
-import Svg, { Circle } from 'react-native-svg'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Animated, Pressable } from 'react-native';
+import { GestureHandlerRootView, TextInput } from 'react-native-gesture-handler';
+import { DropProvider, Draggable, Droppable, Sortable, SortableItem } from 'react-native-reanimated-dnd';
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle)
+const mockItems = [
+  { id: '1', title: 'Item 1' },
+  { id: '2', title: 'Item 2' },
+  { id: '3', title: 'Item 3' },
+  { id: '4', title: 'Item 4' },
+  { id: '6', title: 'Item 6' },
+  { id: '7', title: 'Item 7' },
+  { id: '8', title: 'Item 8' },
+  { id: '9', title: 'Item 9' },
+  { id: '10', title: 'Item 10' },
+  { id: '11', title: 'Item 11' },
+  { id: '12', title: 'Item 12' },
+  { id: '13', title: 'Item 13' },
+  { id: '14', title: 'Item 14' },
+  { id: '15', title: 'Item 15' },
+];
 
 const SavedScreen = () => {
-  const withValue = useSharedValue(100)
-  const r = useSharedValue<number>(20)
-  const valueX = useSharedValue(0)
-  const [inputValue, setInputValue] = useState('')
-  const keyboard = useAnimatedKeyboard()
+  const insets = useSafeAreaInsets();
+  const [items, setItems] = React.useState(mockItems);
 
-  const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ translateY: -keyboard.height.value }],
-  }));
-
-
-  const startOsilation = () => {
-    valueX.value = withRepeat(
-      withSequence(
-        withTiming(valueX.value + 200, { duration: 1000 }),
-        withTiming(0, { duration: 1000 })
-      ),
-      10
+  const ItemComponent = ({ item }: { item: typeof mockItems[0] }) => {
+    const [input, setInput] = useState('')
+    return (
+      <View style={{ flex: 1, }}>
+        <TextInput
+          style={{ borderColor: 'gray', borderWidth: 1, borderRadius: 8 }}
+          placeholder="Type here..."
+          placeholderTextColor={'#8E8E93'}
+          value={input}
+          onChangeText={setInput}
+        />
+      </View>
     )
-  }
-
-  const AnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: valueX.value }]
-    }
-  })
+  };
 
   return (
-    <SafeAreaView style={{flex : 1, marginBottom : 100}} >
-      <Animated.View style={[{flex : 1 ,justifyContent : 'flex-end'},animatedStyles]}>
-        <View style={{ paddingHorizontal: 20 }}>
-          <TextInput
-            value={inputValue}
-            onChangeText={setInputValue}
-            placeholder='Enter your text'
-            placeholderTextColor={'black'}
-            style={{
-              backgroundColor: 'white',
-              color: 'black',
-              borderRadius: 4,
-              minHeight: 40,
-              paddingHorizontal : 20
-            }}
-          />
-        </View>
-      </Animated.View>
+    <View style={{ flex: 1, backgroundColor: '#000000', paddingTop: insets.top }}>
 
-    </SafeAreaView>
-
+    <View style={styles.header}>
+      <Text style={styles.headerTitle}>📋 My Tasks</Text>
+      <Text style={styles.headerSubtitle}>Drag to reorder</Text>
+    </View>
+    </View>
   )
 }
 
 export default SavedScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    height: 100,
-    backgroundColor: "green"
-  }
+  header: {
+    padding: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#2C2C2E",
+  },
+  headerTitle: {
+    color: "#FFFFFF",
+    fontSize: 24,
+    fontWeight: "700",
+    marginBottom: 4,
+  },
+  headerSubtitle: {
+    color: "#8E8E93",
+    fontSize: 14,
+  },
+  list: {
+    flex: 1,
+    backgroundColor: "#000000",
+    marginTop: 20,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+  taskItem: {
+    height: 80,
+
+    backgroundColor: "transparent",
+  },
+  taskContent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "#1C1C1E",
+
+    borderWidth: 1,
+    borderColor: "#3A3A3C",
+  },
+  taskInfo: {
+    flex: 1,
+    paddingRight: 16,
+  },
+  taskTitle: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+  taskStatus: {
+    color: "#8E8E93",
+    fontSize: 14,
+  },
+  dragIconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+  },
+  dragColumn: {
+    flexDirection: "column",
+    gap: 2,
+  },
+  dragDot: {
+    width: 3,
+    height: 3,
+    borderRadius: 1.5,
+    backgroundColor: "#6D6D70",
+  },
 })

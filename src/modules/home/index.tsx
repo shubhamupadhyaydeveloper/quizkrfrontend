@@ -1,27 +1,30 @@
 import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useMemo, version } from 'react'
 import { horizontalScale, verticalScale } from '../../utils/responsive'
-import FastImage from 'react-native-fast-image'
 import Animated, { Extrapolation, interpolate, interpolateColor, runOnJS, useAnimatedReaction, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withDecay, withDelay, withTiming } from 'react-native-reanimated'
-import { Colors } from '../../utils/constants'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { DrawerActions, useNavigation } from '@react-navigation/native'
-import CommonHeader from '../../components/CommonHeader'
+import { useScrollContext } from '../../context/ScrollContext'
+import CommonHeader from '@components/CommonHeader'
 
+ 
 const mockData = [
-  { title: 'Insert Text', background: '#1A241F', image: require('../../assets/jpg/typingText.jpg'), description: 'Easily create quizzes by entering text manually. Simply type or paste your study material, and the AI will generate relevant questions to help you revise effectively.' }
-  , { title: 'Add PDF', background: '#1A241F', image: require('../../assets/jpg//ChoosePdf.jpg'), description: 'Upload PDFs of books, notes, or study guides, and the app will automatically extract key information to create quizzes. This feature saves time and ensures comprehensive exam preparation.' }
-  , { title: 'Click Photos', background: '#1A241F', image: require('../../assets///jpg/TakePic.jpg'), description: 'Capture images of handwritten notes, textbooks, or printed documents, and let the AI convert them into quizzes. This is perfect for quickly digitizing study material on the go.' }
-  ,]
+  { title: 'Add PDF', background: '#1A241F', image: require('../../assets/jpg//ChoosePdf.jpg'), description: 'Upload PDFs of books, notes, or study guides, and the app will automatically extract key information to create quizzes. This feature saves time and ensures comprehensive exam preparation.' }
+  ,
+  { title: 'Click Photos', background: '#1A241F', image: require('../../assets///jpg/TakePic.jpg'), description: 'Capture images of handwritten notes, textbooks, or printed documents, and let the AI convert them into quizzes. This is perfect for quickly digitizing study material on the go.' }
+  , { title: 'Insert Text', background: '#1A241F', image: require('../../assets///jpg/TakePic.jpg'), description: 'Easily create quizzes by entering text manually. Simply type or paste your study material, and the AI will generate relevant questions to help you revise effectively.' },
+  { title: 'Generate Questions', background: '#1A241F', image: require('../../assets///jpg/TakePic.jpg'), description: 'The AI will generate questions based on the content of your study material, ensuring a well-structured and engaging quiz experience.' }
+
+]
 
 const HomeScreen = () => {
   const topScrollValue = useSharedValue(0)
+  const { scrollY, resetScroll } = useScrollContext()
 
-
-  const onScrollHandler = useAnimatedScrollHandler(e => {
-    topScrollValue.value = e.contentOffset.y
+  const onScrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = Math.max(0, event.contentOffset.y)
+      topScrollValue.value = event.contentOffset.y
+    }
   })
-
 
   const RenderBox = useMemo(() => ({
     text,
@@ -67,7 +70,7 @@ const HomeScreen = () => {
       >
         <Image source={image} style={[StyleSheet.absoluteFillObject]} blurRadius={140} />
         <View>
-          <Text style={{ fontSize: 20, fontFamily: 'Bungee-Regular', color: 'white', lineHeight: 24 }}>{text}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white', lineHeight: 24 }}>{text}</Text>
           <View>
             <Text style={{ color: 'rgb(156 163 175)', fontSize: 14, fontFamily: 'Nunito-Medium', marginTop: 10, opacity: 0.8 }}>{description}</Text>
           </View>
@@ -81,13 +84,11 @@ const HomeScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-
       <StatusBar translucent backgroundColor={'black'} />
-
       <Animated.FlatList
         onScroll={onScrollHandler}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item,index) => index.toString()}
+        keyExtractor={(item, index) => index.toString()}
         data={mockData}
         renderItem={({ item, index }) => <RenderBox index={index} description={item.description} bg={item.background} image={item.image} text={item.title} />}
         ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
@@ -104,7 +105,6 @@ const HomeScreen = () => {
           paddingHorizontal: 15
         }}
       />
-
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import { Alert, Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, PermissionsAndroid, Platform, Linking } from 'react-native'
 import React, { useState } from 'react'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import TextRecognition from '@react-native-ml-kit/text-recognition';
@@ -15,6 +15,22 @@ const QuizWithImage = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [textCopy, setTextCopy] = useState(false)
 
+  const requestCameraPermission = async () => {
+    if (Platform.OS === 'android') {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "Camera Permission",
+          message: "App needs access to your camera",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      return granted === PermissionsAndroid.RESULTS.GRANTED;
+    }
+    return true;
+  };
+
   const handleExtractText = async (imageUrl: string) => {
     console.log('this is working')
     const result = await TextRecognition.recognize(imageUrl);
@@ -24,11 +40,32 @@ const QuizWithImage = () => {
 
   const handleTakeImage = async () => {
     try {
+      const hasPermission = await requestCameraPermission();
+      if (!hasPermission) {
+        Alert.alert(
+          "Permission Denied",
+          "Camera permission is required to take a photo.",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+              onPress: () => console.log("Cancel Pressed"),
+            },
+            {
+              text: 'Open Settings',
+              onPress: () => {
+                Linking.openSettings();
+              }
+            },
+          ]
+        );
+        return;
+      }
+
       const result = await launchCamera({
         mediaType: "photo",
         cameraType: "back",
-        quality: 0.9,
-
+        quality: 1,
       });
 
       if (result.didCancel) {
@@ -42,12 +79,17 @@ const QuizWithImage = () => {
       }
 
       if (result.assets && result.assets.length > 0) {
-        setCameraImage(result.assets[0].uri)
+        console.log("Selected Image URI:", result.assets[0].uri);
+        setCameraImage('')
       }
+
+      console.log("Camera result:", result);
+
     } catch (error) {
       console.error("Error launching camera:", error);
     }
   };
+
 
   const handleSelectImage = async () => {
     try {
@@ -67,6 +109,7 @@ const QuizWithImage = () => {
       }
 
       if (result.assets && result.assets.length > 0) {
+        console.log("Selected Image URI:", result.assets[0].uri);
         setCameraImage(result.assets[0].uri)
       }
     } catch (error) {
@@ -78,20 +121,21 @@ const QuizWithImage = () => {
     <View style={{ flex: 1 }}>
       <View style={{ marginTop: 20, justifyContent: 'center', alignItems: "center", marginBottom: 20 }}>
         {cameraImage ? (
-
           <View style={{ position: 'relative' }}>
-            <TouchableOpacity style={[styles.container, {
-              backgroundColor: 'red',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              position: 'absolute',
-              zIndex: 10,
-              right: 0,
-              top: -verticalScale(10),
-              width: 40,
-              height: 40,
-              alignItems: 'center',
-            }]}>
+            <TouchableOpacity
+              onPress={() => setCameraImage('')}
+              style={[styles.container, {
+                backgroundColor: 'red',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                position: 'absolute',
+                zIndex: 10,
+                right: 0,
+                top: -verticalScale(10),
+                width: 40,
+                height: 40,
+                alignItems: 'center',
+              }]}>
               <View >
                 <IcoIcons name='trash-sharp' size={20} color={'white'} />
               </View>
@@ -114,17 +158,21 @@ const QuizWithImage = () => {
       </View>
 
       <View style={{ gap: 10 }}>
-        <TouchableOpacity activeOpacity={.8} onPress={handleTakeImage}>
-          <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
-            <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Click Image</Text>
+        {!cameraImage && (
+          <View style={{ gap: 10 }}>
+            <TouchableOpacity activeOpacity={.8} onPress={handleTakeImage}>
+              <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
+                <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Click Image</Text>
+              </View>
+            </TouchableOpacity>
+            {/* <Text style={{ textAlign: 'center', fontFamily: 'Nunito-Bold', fontSize: 14 }}>Or</Text> */}
+            <TouchableOpacity activeOpacity={.8} onPress={handleSelectImage}>
+              <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
+                <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Select Image</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        {/* <Text style={{ textAlign: 'center', fontFamily: 'Nunito-Bold', fontSize: 14 }}>Or</Text> */}
-        <TouchableOpacity activeOpacity={.8} onPress={handleSelectImage}>
-          <View style={{ padding: 15, borderRadius: 10, backgroundColor: '#0D9276', }}>
-            <Text style={{ textAlign: 'center', fontSize: 12, lineHeight: 14, fontFamily: 'Bungee-Regular', color: 'white' }}>Select Image</Text>
-          </View>
-        </TouchableOpacity>
+        )}
 
         {cameraImage && (
           <TouchableOpacity activeOpacity={.8} onPress={() => handleExtractText(cameraImage)}>

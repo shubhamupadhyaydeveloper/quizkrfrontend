@@ -11,23 +11,44 @@ import { loginSchema } from '../../utils/schema';
 import { Colors, loginImage } from '../../utils/constants';
 import CustomInput from '../../components/CustomTextInput';
 import CustomButton from '../../components/Button';
+import { account } from '@src/lib/appwrite';
 
 
 const AuthLoginScreen = () => {
-    const navigation = useNavigation<NavigationProp<AuthStackNavigationType,'Login'>>();
-   
+    const navigation = useNavigation<NavigationProp<AuthStackNavigationType, 'Login'>>();
+
     const { control, handleSubmit, formState: { isLoading }, reset } = useForm({
         resolver: zodResolver(loginSchema),
     });
 
     const onSubmit = async (value: FieldValues) => {
-        navigation.dispatch(
-             CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'App' }],
-             })
-        )
-    }
+        try {
+            console.log('this is value', value);
+
+            // Step 1: Create a session (logs the user in)
+            await account.createEmailPasswordSession(value.email, value.password);
+
+            // Step 2: Now get the user info
+            const user = await account.get();
+            console.log('this is user', user);
+
+            // Step 3: Navigate to main app screen
+            // navigation.dispatch(
+            //     CommonActions.reset({
+            //         index: 0,
+            //         routes: [{ name: 'App' }],
+            //     })
+            // );
+        } catch (err: any) {
+            if (err.message.includes('Rate limit')) {
+                Alert.alert('Too many requests', 'Please wait a few minutes and try again.');
+            } else {
+                Alert.alert('Login Failed', err.message ?? 'Something went wrong');
+            }
+        }
+
+    };
+
 
     return (
         <KeyboardAvoidingView

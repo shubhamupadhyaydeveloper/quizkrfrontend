@@ -36,6 +36,7 @@ const Filters = ({ onValueChange,defaultValues }: FiltersProps) => {
                 horizontal
                 ItemSeparatorComponent={() => <View style={{ width: horizontalScale(10) }} />}
                 showsHorizontalScrollIndicator={false}
+                ListHeaderComponent={() => <View style={{width : horizontalScale(15) }} />}
             />
 
             <Modal

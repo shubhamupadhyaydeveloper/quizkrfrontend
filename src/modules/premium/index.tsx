@@ -6,6 +6,7 @@ import { horizontalScale } from '../../utils/responsive';
 import GoBack from '../../components/GoBack';
 import { Colors } from '../../utils/constants';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import HorizontalSlider from '../../components/HorizontalSlider';
 
 type MockDataType = {
     title: string;
@@ -74,10 +75,22 @@ const PremiumScreen = () => {
         <View style={{ paddingTop: insets.top, flex: 1, backgroundColor: '#121212', paddingHorizontal: 20, paddingBottom: insets.bottom + 20, gap: 20 }}>
 
             <View>
-                <Text style={{ color: Colors.primary, fontFamily: 'Bungee-Regular', fontSize: 24, }}>Premium Plans</Text>
-                <Text style={{ color: 'white', fontFamily: 'Nunito-Bold', fontSize: 16 }}>Unlock The full Power of Learning With Quizkr Premium Plans</Text>
-                <Text style={{ color: 'white', fontFamily: 'Nunito-Bold', fontSize: 16 }}>Choose the perfect plan for your journey</Text>
+                <Text style={{ color: Colors.primary, fontSize: 21, fontWeight: 'bold' }}>Subscriptions</Text>
+                <View style={{ padding: 15, backgroundColor: '#fafafa', borderRadius: 12, marginTop: 10 }}>
+                    <View style={{ backgroundColor: '#f2f2f2', width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center' }}>
+                        <AntDesignIcon name='user' color={'black'} size={24} />
+                    </View>
+
+                    <View>
+                        <Text style={{ fontSize: 16, color: 'black', fontFamily: 'Nunito-Bold', marginTop: 10 }}>Welcome to Premium</Text>
+                        <Text style={{ fontSize: 14, color: '#555', marginTop: 5 }}>Unlock exclusive features and content with our premium plans.</Text>
+                    </View>
+                </View>
             </View>
+
+            {/* <View>
+                 <HorizontalSlider data={['Free Plan', 'Pro Plan','Custom']} onChange={() => {}} defaultValue='Free Plan' height={34} key={1} width={horizontalScale(105)} />
+            </View> */}
 
             <FlatList
                 data={mockData}
@@ -91,7 +104,25 @@ const PremiumScreen = () => {
                 contentContainerStyle={{ paddingBottom: insets.bottom + 20 }}
                 showsVerticalScrollIndicator={false}
                 ItemSeparatorComponent={() => <View style={{ width: horizontalScale(10) }} />}
+
             />
+
+            <View style={{ gap: 20 }}>
+                <TouchableOpacity activeOpacity={.8}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                        <AntDesignIcon name="lock" color="#f2f2f2" size={24} />
+                        <Text style={{ color: '#f2f2f2', fontSize: 16 }}>Privacy Policy</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity activeOpacity={.8}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                        <AntDesignIcon name="infocirlceo" color="#f2f2f2" size={22} />
+                        <Text style={{ color: '#f2f2f2', fontSize: 16 }}>Terms & Conditions</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+
 
         </View>
     )

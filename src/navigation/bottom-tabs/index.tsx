@@ -1,6 +1,6 @@
-import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Dimensions, Image, LayoutChangeEvent, StyleSheet, Text, View } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { BottomTabBarButtonProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabNavigationType } from '../../utils/types'
 import { horizontalScale, iosDevice, verticalScale } from '../../utils/responsive'
 import HomeScreen from '../../modules/home'
@@ -14,15 +14,25 @@ import { Colors } from '../../utils/constants'
 import HomeFillIcon from '../../svg/home/homeFill'
 import HomeOutlineIcon from '../../svg/home/homeOutline'
 import PremiumScreen from '../../modules/premium'
+import { Animated, Pressable } from 'react-native';
+import { HeaderLayoutProvider } from '../../context/HeaderLayoutContext'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import CustomTabBar from './components/CustomTabBar'
+import { ScrollContextProvider } from '../../context/ScrollContext'
 
 const BottomTabNavigation = () => {
+
     const BottomTab = createBottomTabNavigator<BottomTabNavigationType>()
 
     return (
+
         <BottomTab.Navigator
+            tabBar={props => <CustomTabBar {...props} />}
             initialRouteName='Home'
             screenOptions={{
                 headerShown: false,
+                lazy: true,
+                tabBarHideOnKeyboard: true,
                 tabBarInactiveTintColor: '#ffffff',
                 tabBarActiveTintColor: '#16C47F',
                 tabBarStyle: {
@@ -36,61 +46,35 @@ const BottomTabNavigation = () => {
                     shadowOpacity: 0.25,
                     shadowRadius: 4,
                     elevation: 5,
+                    paddingBottom: verticalScale(5),
                 },
                 tabBarLabelStyle: {
                     fontSize: 10,
-                    fontFamily: 'Fredoka_Condensed-Bold',
-                    display: 'none'
+                    fontFamily: 'Nunito-Medium',
+                    marginTop: verticalScale(2),
                 },
             }}
         >
             <BottomTab.Screen
                 name='Home'
                 component={HomeScreen}
-                options={{
-                    tabBarButton: (props) => <Pressable {...props} />,
-                    title: "Home",
-                    tabBarIcon: ({ focused, color }) => (
-                        focused ? <HomeFillIcon size={horizontalScale(28)} color={color} /> : <HomeOutlineIcon color={color} size={horizontalScale(28)} />
-                    ),
-                }}
             />
             <BottomTab.Screen
                 name='Generate'
                 component={GenerateScreen}
-                options={{
-                    tabBarButton: (props) => <Pressable {...props} />,
-                    title: "Generate",
-                    tabBarIcon: ({ color, focused }) => (
-                        <BrainIcon width={horizontalScale(28)} height={verticalScale(28)} fill={color} />
-                    )
-                }}
             />
             <BottomTab.Screen
                 name='Saved'
                 component={SavedScreen}
-                options={{
-                    tabBarButton: (props) => <Pressable {...props} />,
-                    title: "Saved",
-                    tabBarIcon: ({ color, focused }) => (
-                        <SavedIcon width={horizontalScale(26)} height={verticalScale(26)} fill={color} />
-                    )
-                }}
             />
             <BottomTab.Screen
                 name="Premium"
                 component={PremiumScreen}
-                options={{
-                    tabBarButton: (props) => <Pressable {...props} />,
-                    title: "Premium",
-                    tabBarIcon: ({ color, focused }) => (
-                        <FlameIcon width={horizontalScale(30)} height={verticalScale(30)} fill={color} />
-                    )
-                }}
             />
 
-
         </BottomTab.Navigator>
+
+
     )
 }
 
