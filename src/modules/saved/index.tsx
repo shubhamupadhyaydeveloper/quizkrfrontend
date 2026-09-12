@@ -1,126 +1,181 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Animated, Pressable } from 'react-native';
-import { GestureHandlerRootView, TextInput } from 'react-native-gesture-handler';
-import { DropProvider, Draggable, Droppable, Sortable, SortableItem } from 'react-native-reanimated-dnd';
+import { Alert, FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import Screen from '../../components/ui/Screen'
+import Card from '../../components/ui/Card'
+import { Colors } from '../../theme/colors'
+import { Typography } from '../../theme/typography'
+import { moderateScale } from '../../utils/responsive'
+import { CameraIcon, PasteTextIcon, PdfIcon, TrashIcon } from '../../components/icons'
+import { BottomTabNavigationType, SavedQuiz } from '../../utils/types'
+import { useAppStore } from '../../store/AppStore'
+import { useT } from '../../i18n'
 
-const mockItems = [
-  { id: '1', title: 'Item 1' },
-  { id: '2', title: 'Item 2' },
-  { id: '3', title: 'Item 3' },
-  { id: '4', title: 'Item 4' },
-  { id: '6', title: 'Item 6' },
-  { id: '7', title: 'Item 7' },
-  { id: '8', title: 'Item 8' },
-  { id: '9', title: 'Item 9' },
-  { id: '10', title: 'Item 10' },
-  { id: '11', title: 'Item 11' },
-  { id: '12', title: 'Item 12' },
-  { id: '13', title: 'Item 13' },
-  { id: '14', title: 'Item 14' },
-  { id: '15', title: 'Item 15' },
-];
+type Nav = NativeStackNavigationProp<BottomTabNavigationType, 'Saved'>;
+
+const SOURCE_ICONS = {
+  scan: CameraIcon,
+  pdf: PdfIcon,
+  text: PasteTextIcon,
+};
 
 const SavedScreen = () => {
-  const insets = useSafeAreaInsets();
-  const [items, setItems] = React.useState(mockItems);
+  const navigation = useNavigation<Nav>();
+  const { toAttemptQuizzes, completedQuizzes, removeQuiz } = useAppStore();
+  const [tab, setTab] = useState<'toAttempt' | 'completed'>('toAttempt');
+  const t = useT();
 
-  const ItemComponent = ({ item }: { item: typeof mockItems[0] }) => {
-    const [input, setInput] = useState('')
-    return (
-      <View style={{ flex: 1, }}>
-        <TextInput
-          style={{ borderColor: 'gray', borderWidth: 1, borderRadius: 8 }}
-          placeholder="Type here..."
-          placeholderTextColor={'#8E8E93'}
-          value={input}
-          onChangeText={setInput}
-        />
-      </View>
-    )
+  const visible = tab === 'toAttempt' ? toAttemptQuizzes : completedQuizzes;
+
+  const openQuiz = (entry: SavedQuiz) => {
+    navigation.navigate('Create', {
+      screen: 'QuizTaking',
+      params: { quiz: entry.quiz },
+    } as any);
+  };
+
+  const confirmDelete = (entry: SavedQuiz) => {
+    Alert.alert(t('deleteQuizTitle'), entry.quiz.title, [
+      { text: t('cancel'), style: 'cancel' },
+      { text: t('delete'), style: 'destructive', onPress: () => removeQuiz(entry.quiz.id) },
+    ]);
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#000000', paddingTop: insets.top }}>
-
-    <View style={styles.header}>
-      <Text style={styles.headerTitle}>📋 My Tasks</Text>
-      <Text style={styles.headerSubtitle}>Drag to reorder</Text>
-    </View>
-    </View>
+    <Screen background={Colors.bg}>
+      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <FlatList
+        data={visible}
+        keyExtractor={item => item.quiz.id}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <>
+            <View style={styles.header}>
+              <Text style={[Typography.h1, styles.ink]}>{t('saved')}</Text>
+              <Text style={[Typography.body, styles.muted]}>{t('savedBody')}</Text>
+            </View>
+            <View style={styles.segmented}>
+              {(['toAttempt', 'completed'] as const).map(key => (
+                <TouchableOpacity
+                  key={key}
+                  style={[styles.segment, tab === key && styles.segmentActive]}
+                  onPress={() => setTab(key)}
+                >
+                  <Text style={[Typography.bodyMedium, tab === key ? styles.surface : styles.muted]}>
+                    {key === 'toAttempt' ? t('toAttempt') : t('completed')}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </>
+        }
+        renderItem={({ item }) => {
+          const Icon = SOURCE_ICONS[item.quiz.source.kind];
+          return (
+            <TouchableOpacity activeOpacity={0.85} onPress={() => openQuiz(item)}>
+              <Card style={styles.quizRow}>
+                <View style={styles.quizIconSlot}>
+                  <Icon size={22} color={Colors.ink} />
+                </View>
+                <View style={styles.quizCopy}>
+                  <Text style={[Typography.bodyMedium, styles.ink]} numberOfLines={1}>
+                    {item.quiz.title}
+                  </Text>
+                  <Text style={[Typography.caption, styles.muted]} numberOfLines={1}>
+                    {t('questionsCount', { count: item.quiz.questions.length })} ·{' '}
+                    {t(item.quiz.settings.difficulty.toLowerCase() as 'easy' | 'medium' | 'hard')}
+                    {item.status === 'completed' ? t('scoredPct', { score: item.scorePercent ?? 0 }) : ''}
+                  </Text>
+                </View>
+                <TouchableOpacity style={styles.deleteButton} onPress={() => confirmDelete(item)}>
+                  <TrashIcon size={16} color={Colors.red} />
+                </TouchableOpacity>
+              </Card>
+            </TouchableOpacity>
+          );
+        }}
+        ItemSeparatorComponent={() => <View style={{ height: moderateScale(10) }} />}
+        ListEmptyComponent={
+          <View style={styles.emptyState}>
+            <Text style={[Typography.body, styles.muted, styles.center]}>
+              {tab === 'toAttempt'
+                ? t('emptyToAttempt')
+                : t('emptyCompleted')}
+            </Text>
+          </View>
+        }
+      />
+    </Screen>
   )
 }
 
 export default SavedScreen;
 
 const styles = StyleSheet.create({
+  content: {
+    paddingHorizontal: moderateScale(20),
+    paddingTop: moderateScale(16),
+    paddingBottom: moderateScale(130),
+  },
   header: {
-    padding: 20,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#2C2C2E",
+    gap: 4,
+    marginBottom: moderateScale(24),
   },
-  headerTitle: {
-    color: "#FFFFFF",
-    fontSize: 24,
-    fontWeight: "700",
-    marginBottom: 4,
+  ink: { color: Colors.ink },
+  muted: { color: Colors.muted },
+  surface: { color: Colors.surface },
+  center: { textAlign: 'center' },
+  segmented: {
+    flexDirection: 'row',
+    backgroundColor: Colors.surface,
+    borderRadius: 999,
+    padding: 5,
+    gap: 4,
+    marginBottom: moderateScale(24),
   },
-  headerSubtitle: {
-    color: "#8E8E93",
-    fontSize: 14,
-  },
-  list: {
+  segment: {
     flex: 1,
-    backgroundColor: "#000000",
-    marginTop: 20,
-    paddingHorizontal: 20,
+    height: 42,
+    borderRadius: 999,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  segmentActive: {
+    backgroundColor: Colors.ink,
+  },
+  quizRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: moderateScale(14),
+  },
+  quizIconSlot: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: Colors.surface,
+    borderWidth: 1.5,
+    borderColor: Colors.badgeBorder,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  quizCopy: {
+    flex: 1,
+    gap: 4,
+  },
+  deleteButton: {
+    width: 40,
+    height: 40,
     borderRadius: 20,
-    overflow: "hidden",
+    borderWidth: 1.5,
+    borderColor: `${Colors.red}59`,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  taskItem: {
-    height: 80,
-
-    backgroundColor: "transparent",
+  emptyState: {
+    paddingTop: moderateScale(40),
+    paddingHorizontal: moderateScale(20),
+    alignItems: 'center',
   },
-  taskContent: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    backgroundColor: "#1C1C1E",
-
-    borderWidth: 1,
-    borderColor: "#3A3A3C",
-  },
-  taskInfo: {
-    flex: 1,
-    paddingRight: 16,
-  },
-  taskTitle: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 4,
-  },
-  taskStatus: {
-    color: "#8E8E93",
-    fontSize: 14,
-  },
-  dragIconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 3,
-  },
-  dragColumn: {
-    flexDirection: "column",
-    gap: 2,
-  },
-  dragDot: {
-    width: 3,
-    height: 3,
-    borderRadius: 1.5,
-    backgroundColor: "#6D6D70",
-  },
-})
+});

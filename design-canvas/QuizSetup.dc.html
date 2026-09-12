@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #F5F4F1; }
+    a { color: #21212B; } a:hover { color: #40404a; }
+    * { box-sizing: border-box; }
+    .scroll::-webkit-scrollbar { display: none; }
+  </style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F4F1; font-family: 'Inter', system-ui, sans-serif; color: #21212B;">
+
+  <div class="scroll" style="position: absolute; top: 0; left: 0; right: 0; bottom: 110px; overflow-y: auto; padding: 48px 20px 16px; display: flex; flex-direction: column; gap: 24px; scrollbar-width: none;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+      </div>
+      <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em;">Set up quiz</div>
+      <div style="width: 44px;"></div>
+    </div>
+
+    <div style="border-radius: 18px; background: #FFFFFF; padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid rgba(33,33,43,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v11a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"></path><path d="M14 3v5h5"></path></svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;">
+        <div style="font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">photosynthesis-ch4.pdf</div>
+        <div style="font-size: 12px; font-weight: 600; color: #6E6E78;">12 pages read</div>
+      </div>
+      <div style="font-size: 13px; font-weight: 700; color: #6E6E78;">Change</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 16px;">Questions</div>
+        <div style="font-size: 13px; font-weight: 600; color: #6E6E78;">Up to 30</div>
+      </div>
+      <div style="border-radius: 22px; background: #FFFFFF; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid rgba(33,33,43,0.12); display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 12h12"></path></svg>
+        </div>
+        <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em;">10</div>
+        <div style="width: 48px; height: 48px; border-radius: 16px; background: #21212B; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 6v12"></path><path d="M6 12h12"></path></svg>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 16px;">Difficulty</div>
+      <div style="border-radius: 999px; background: #FFFFFF; padding: 5px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px;">
+        <div style="height: 44px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #6E6E78;">Easy</div>
+        <div style="height: 44px; border-radius: 999px; background: #21212B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;">Medium</div>
+        <div style="height: 44px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #6E6E78;">Hard</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 16px;">Question types</div>
+      <div style="border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-size: 15px; font-weight: 700;">Multiple choice</div>
+            <div style="font-size: 13px; font-weight: 500; color: #6E6E78;">Four options, one correct</div>
+          </div>
+          <div style="width: 50px; height: 30px; border-radius: 999px; background: #21212B; padding: 3px; display: flex; justify-content: flex-end; flex-shrink: 0;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF;"></div>
+          </div>
+        </div>
+        <div style="height: 1px; background: rgba(33,33,43,0.08); margin: 0 18px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-size: 15px; font-weight: 700;">True or false</div>
+            <div style="font-size: 13px; font-weight: 500; color: #6E6E78;">Mixed in with the rest</div>
+          </div>
+          <div style="width: 50px; height: 30px; border-radius: 999px; background: #21212B; padding: 3px; display: flex; justify-content: flex-end; flex-shrink: 0;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 16px;">Time limit</div>
+        <div style="font-size: 13px; font-weight: 600; color: #6E6E78;">For the whole quiz</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+        <div style="height: 48px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #6E6E78;">None</div>
+        <div style="height: 48px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #6E6E78;">10 min</div>
+        <div style="height: 48px; border-radius: 999px; background: #21212B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;">15 min</div>
+        <div style="height: 48px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #6E6E78;">20 min</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 110px; padding: 18px 20px 28px; background: #F5F4F1; border-top: 1px solid rgba(33,33,43,0.08);">
+    <div style="height: 58px; border-radius: 999px; background: linear-gradient(100deg, #7FA6E0 0%, #8C7FE0 50%, #E39BC9 100%); color: #21212B; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#21212B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9.5l-4.7 1.9L12 16l-1.8-4.6L5.5 9.5l4.7-1.9z"></path></svg>
+      <span>Generate quiz</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

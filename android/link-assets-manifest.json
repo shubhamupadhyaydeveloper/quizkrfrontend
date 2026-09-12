@@ -6,6 +6,14 @@
       "sha1": "a3164074d741797f169cddcf7097683556b3df87"
     },
     {
+      "path": "src/assets/fonts/Fraunces24pt-Bold.ttf",
+      "sha1": "76bc6ab0c864b5fbe8d25cde4d4daa5313152b88"
+    },
+    {
+      "path": "src/assets/fonts/Fraunces24pt-Italic.ttf",
+      "sha1": "3331c0b7449971f7d0856c789547ecb56c66af58"
+    },
+    {
       "path": "src/assets/fonts/Fredoka_Condensed-Bold.ttf",
       "sha1": "02636c1ffe6f1915eba35d3e1163edf0e55e7f45"
     },
@@ -20,6 +28,18 @@
     {
       "path": "src/assets/fonts/Fredoka_Condensed-Regular.ttf",
       "sha1": "d2472b57a3b7b9a54239a3806f66b2b8471352cc"
+    },
+    {
+      "path": "src/assets/fonts/Inter_18pt-Bold.ttf",
+      "sha1": "518a0361a245a66b49bc24ae0137f38328197bdc"
+    },
+    {
+      "path": "src/assets/fonts/Inter_18pt-Regular.ttf",
+      "sha1": "bd1976c1f019853ab6143ef1246e25aa66fd990e"
+    },
+    {
+      "path": "src/assets/fonts/Inter_18pt-SemiBold.ttf",
+      "sha1": "f3e44abd6661d5b861e66db22f4f79a6c466cd00"
     },
     {
       "path": "src/assets/fonts/Nunito-Bold.ttf",

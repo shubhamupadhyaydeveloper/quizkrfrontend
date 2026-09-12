@@ -1,0 +1,151 @@
+{
+  "artboards": [
+    {
+      "file": "Splash.dc.html",
+      "title": "Splash",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "Onboarding",
+      "x": 530,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "HomeEmpty.dc.html",
+      "title": "Home \u2014 empty",
+      "x": 1060,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Home.dc.html",
+      "title": "Home",
+      "x": 1590,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "CreateQuiz.dc.html",
+      "title": "Create quiz \u2014 PDF",
+      "x": 2120,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "CreatePaste.dc.html",
+      "title": "Create quiz \u2014 paste text",
+      "x": 2650,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "CreateScan.dc.html",
+      "title": "Create quiz \u2014 scan",
+      "x": 3180,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "QuizSetup.dc.html",
+      "title": "Quiz setup",
+      "x": 0,
+      "y": 1004,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Generating.dc.html",
+      "title": "Generating",
+      "x": 530,
+      "y": 1004,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "QuizTaking.dc.html",
+      "title": "Quiz \u2014 answered",
+      "x": 1060,
+      "y": 1004,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Results.dc.html",
+      "title": "Results",
+      "x": 1590,
+      "y": 1004,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Flagged.dc.html",
+      "title": "Flagged questions",
+      "x": 2120,
+      "y": 1004,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Saved.dc.html",
+      "title": "Saved",
+      "x": 0,
+      "y": 2008,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Profile.dc.html",
+      "title": "Profile",
+      "x": 530,
+      "y": 2008,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Credits.dc.html",
+      "title": "Credits & Pro",
+      "x": 1060,
+      "y": 2008,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "LogoOptions.dc.html",
+      "title": "Logo directions",
+      "x": 1590,
+      "y": 2008,
+      "w": 900,
+      "h": 560
+    },
+    {
+      "file": "CreditsPopup.dc.html",
+      "title": "Credits popup (on launch)",
+      "x": 2620,
+      "y": 2008,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Language.dc.html",
+      "title": "Language",
+      "x": 3150,
+      "y": 2008,
+      "w": 390,
+      "h": 844
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

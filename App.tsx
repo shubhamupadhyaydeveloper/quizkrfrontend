@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 import RootStackNavigation from './src/navigation/root-stack';
-import DrawerNavigation from './src/navigation/drawer';
-
+import { AppStoreProvider } from './src/store/AppStore';
 
 const App = () => {
-  return <DrawerNavigation />
+  return (
+    <AppStoreProvider>
+      <NavigationContainer>
+        <RootStackNavigation />
+      </NavigationContainer>
+    </AppStoreProvider>
+  )
 }
 
 export default App;
-
-const styles = StyleSheet.create({})

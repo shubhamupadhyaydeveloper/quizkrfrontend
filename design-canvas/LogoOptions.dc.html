@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(99% 0.004 80); }
+    a { color: oklch(21% 0.015 260); } a:hover { color: oklch(40% 0.015 260); }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+<div style="width: 900px; height: 560px; position: relative; overflow: hidden; background: oklch(99% 0.004 80); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: oklch(21% 0.015 260); padding: 36px 40px; display: flex; flex-direction: column; gap: 28px;">
+
+  <div style="display: flex; align-items: baseline; justify-content: space-between;">
+    <div style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;">Logo directions</div>
+    <div style="font-size: 13px; font-weight: 600; color: oklch(52% 0.015 260);">Same ink + coral, three different ideas</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; flex: 1;">
+
+    <div style="border-radius: 28px; background: oklch(94% 0.03 60); padding: 28px 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect width="120" height="120" rx="32" fill="oklch(21% 0.015 260)"></rect>
+          <circle cx="58" cy="56" r="26" stroke="oklch(99% 0.004 80)" stroke-width="10"></circle>
+          <path d="M70 70l10 10" stroke="oklch(99% 0.004 80)" stroke-width="10" stroke-linecap="round"></path>
+          <path d="M92 60l-10 20h12l-10 20" stroke="oklch(68% 0.16 40)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
+            <circle cx="52" cy="52" r="34" stroke="oklch(21% 0.015 260)" stroke-width="14"></circle>
+            <path d="M70 70l16 16" stroke="oklch(21% 0.015 260)" stroke-width="14" stroke-linecap="round"></path>
+            <path d="M100 58l-12 24h14l-12 24" stroke="oklch(68% 0.16 40)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <div style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.03em;">Quizkr</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+        <div style="font-size: 14px; font-weight: 700;">A · Spark Q</div>
+        <div style="font-size: 12px; font-weight: 500; line-height: 1.45; color: oklch(52% 0.015 260); text-wrap: pretty;">The Q's tail becomes a bolt: fast, energetic. Tradeoff: reads a little "tech".</div>
+      </div>
+    </div>
+
+    <div style="border-radius: 28px; background: oklch(94% 0.022 250); padding: 28px 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect width="120" height="120" rx="32" fill="oklch(68% 0.16 40)"></rect>
+          <path d="M30 34a10 10 0 0110-10h40a10 10 0 0110 10v34a10 10 0 01-10 10H56l-16 14V78h0a10 10 0 01-10-10V34z" fill="oklch(99% 0.004 80)"></path>
+          <path d="M48 52l8 8 16-17" stroke="oklch(21% 0.015 260)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
+            <path d="M14 26a12 12 0 0112-12h68a12 12 0 0112 12v46a12 12 0 01-12 12H54L32 104V84h-6a12 12 0 01-12-12V26z" fill="oklch(21% 0.015 260)"></path>
+            <path d="M40 50l14 14 26-28" stroke="oklch(68% 0.16 40)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <div style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.03em;">Quizkr</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+        <div style="font-size: 14px; font-weight: 700;">B · Answer bubble</div>
+        <div style="font-size: 12px; font-weight: 500; line-height: 1.45; color: oklch(52% 0.015 260); text-wrap: pretty;">A speech bubble with a check: ask, answer, done. Friendliest of the three. Tradeoff: chat-app adjacent.</div>
+      </div>
+    </div>
+
+    <div style="border-radius: 28px; background: oklch(94% 0.025 160); padding: 28px 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect width="120" height="120" rx="32" fill="oklch(21% 0.015 260)"></rect>
+          <g transform="rotate(-12 48 62)">
+            <rect x="26" y="34" width="44" height="58" rx="9" fill="oklch(99% 0.004 80)" opacity="0.35"></rect>
+          </g>
+          <g transform="rotate(6 64 60)">
+            <rect x="42" y="30" width="44" height="58" rx="9" fill="oklch(99% 0.004 80)"></rect>
+            <rect x="50" y="42" width="20" height="5" rx="2.5" fill="oklch(21% 0.015 260)"></rect>
+            <rect x="50" y="54" width="28" height="9" rx="4.5" fill="oklch(21% 0.015 260)" opacity="0.15"></rect>
+            <rect x="50" y="68" width="28" height="9" rx="4.5" fill="oklch(68% 0.16 40)"></rect>
+          </g>
+          <circle cx="90" cy="30" r="9" fill="oklch(68% 0.16 40)"></circle>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
+            <g transform="rotate(-12 44 62)">
+              <rect x="14" y="26" width="52" height="70" rx="10" fill="oklch(21% 0.015 260)" opacity="0.35"></rect>
+            </g>
+            <g transform="rotate(6 70 60)">
+              <rect x="40" y="20" width="52" height="70" rx="10" fill="oklch(21% 0.015 260)"></rect>
+              <rect x="50" y="36" width="24" height="7" rx="3.5" fill="oklch(99% 0.004 80)"></rect>
+              <rect x="50" y="52" width="32" height="11" rx="5.5" fill="oklch(99% 0.004 80)" opacity="0.3"></rect>
+              <rect x="50" y="68" width="32" height="11" rx="5.5" fill="oklch(68% 0.16 40)"></rect>
+            </g>
+          </svg>
+          <div style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.03em;">Quizkr</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+        <div style="font-size: 14px; font-weight: 700;">C · Card stack</div>
+        <div style="font-size: 12px; font-weight: 500; line-height: 1.45; color: oklch(52% 0.015 260); text-wrap: pretty;">Two tilted quiz cards, one answer lit up: matches the app's illustrations. Tradeoff: least legible at 16px.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

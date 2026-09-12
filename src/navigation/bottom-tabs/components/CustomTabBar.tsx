@@ -1,67 +1,43 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { Pressable, StyleSheet, View } from 'react-native'
+import React from 'react'
 import { BottomTabBarButtonProps, BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { useScrollContext } from '../../../context/ScrollContext';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { Easing, useAnimatedReaction, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import HomeFillIcon from '../../../svg/home/homeFill';
-import { horizontalScale, verticalScale } from '../../../utils/responsive';
-import HomeOutlineIcon from '../../../svg/home/homeOutline';
-import BrainIcon from '../../../assets/rawsvg/brainIcon.svg';
-import SavedIcon from '../../../assets/rawsvg/saveIcon.svg';
-import FlameIcon from '../../../assets/rawsvg/flame.svg';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { Colors } from '../../../theme/colors';
+import { moderateScale } from '../../../utils/responsive';
+import { HomeIcon, CreateIcon, BookmarkIcon, UserIcon } from '../../../components/icons';
 
-const CustomTabBar = ({ state, navigation, descriptors, }: BottomTabBarProps) => {
-    const { resetScroll, scrollY } = useScrollContext()
-    const lastScrollDirection = useSharedValue<'up' | 'down' | null>(null)
-    const lastScrollY = useSharedValue(0)
+const ROUTE_ICONS: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+    Home: HomeIcon,
+    Create: CreateIcon,
+    Saved: BookmarkIcon,
+    Profile: UserIcon,
+}
 
-    useAnimatedReaction(
-        () => scrollY.value,
-        (current, previous) => {
-            if (previous === undefined || previous === null) return
+const NESTED_ROOTS: Record<string, string | undefined> = {
+    Create: 'CreateHome',
+    Profile: 'ProfileHome',
+}
 
-            if (current > previous) {
-                lastScrollDirection.value = 'down'
-            } else if (current < previous) {
-                lastScrollDirection.value = 'up'
-            }
+const CustomTabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {
+    const insets = useSafeAreaInsets();
 
-            lastScrollY.value = current
-        }
-    )
-
-    const animatedStyle = useAnimatedStyle(() => {
-        const shouldShow = lastScrollY.value <= 1 || lastScrollDirection.value === 'up'
-
-        return {
-            transform: [{
-                translateY: withTiming(shouldShow ? 0 : 100, {
-                    duration: 250,
-                    easing: Easing.out(Easing.cubic)
-                })
-            }],
-            height: withTiming(shouldShow ? 70 : 0, {
-                duration: 250,
-                easing: Easing.out(Easing.cubic)
-            }),
-
-        }
-    })
+    // Screens deeper than a tab's first screen are full-screen tasks with their
+    // own footer buttons — the floating bar would sit on top of them.
+    const focused = state.routes[state.index];
+    const nestedRoute = getFocusedRouteNameFromRoute(focused);
+    const tabRoot = NESTED_ROOTS[focused.name];
+    if (tabRoot && nestedRoute && nestedRoute !== tabRoot) return null;
 
     function CustomTabBarButton({ children, onPress, onLayout }: BottomTabBarButtonProps) {
         return (
             <Pressable
                 onLayout={onLayout}
                 onPress={onPress}
-                android_ripple={null}
-                style={({ pressed }) => ({
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transform: [{ scale: pressed ? 0.9 : 1 }],
-                    opacity: pressed ? 1 : 1,
-                })}
+                style={({ pressed }) => [
+                    styles.button,
+                    { transform: [{ scale: pressed ? 0.94 : 1 }] },
+                ]}
             >
                 {children}
             </Pressable>
@@ -69,61 +45,72 @@ const CustomTabBar = ({ state, navigation, descriptors, }: BottomTabBarProps) =>
     }
 
     return (
-        <Animated.View style={[animatedStyle,
-            {
-                flexDirection: 'row',
-                borderTopWidth: 1,
-                borderTopColor: '#333',
-            }
-
-        ]}>
+        <View style={[styles.wrapper, { bottom: Math.max(insets.bottom, 16) + moderateScale(8) }]}>
             {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key]
                 const isFocused = state.index === index;
+                const Icon = ROUTE_ICONS[route.name];
+
+                // Tapping a tab always lands on that tab's first screen, so
+                // Create starts a fresh quiz instead of reopening old results.
+                const rootScreen = NESTED_ROOTS[route.name];
 
                 const onPress = () => {
-                    resetScroll();
+                    if (rootScreen) {
+                        navigation.navigate(route.name as never, { screen: rootScreen } as never);
+                        return;
+                    }
                     if (!isFocused) {
                         navigation.navigate(route.name);
                     }
                 };
 
                 return (
-                    <View key={route.key} style={{ flex: 1 }}>
-                        <CustomTabBarButton
-                            onPress={onPress}
-                        >
-                            {
-                               route.name === 'Home' && (
-                                  isFocused ? <HomeFillIcon size={horizontalScale(28)} color={'#16C47F'} /> : <HomeOutlineIcon color={'#fff'} size={horizontalScale(28)} />
-                               )
-                            } 
-                            {
-                               route.name === 'Generate' && (
-                                   <BrainIcon width={horizontalScale(28)} height={verticalScale(28)} fill={isFocused ? '#16C47F' : '#fff'} />
-                               )
-                            } 
-                            {
-                               route.name === 'Saved' && (
-                                 <SavedIcon width={horizontalScale(26)} height={verticalScale(26)} fill={isFocused ? '#16C47F' : '#fff'} />
-                               )
-                            } 
-                            {
-                               route.name === 'Premium' && (
-                                  <FlameIcon width={horizontalScale(30)} height={verticalScale(30)} fill={isFocused ? '#16C47F' : '#fff'} />
-                               )
-                            }
-                            <Text style={{ color: isFocused ? '#16C47F' : '#fff', fontSize: 12, fontFamily: 'Nunito-Medium' }}>
-                                {options.title || route.name}
-                            </Text>
-                        </CustomTabBarButton>
-                    </View>
+                    <CustomTabBarButton key={route.key} onPress={onPress}>
+                        <View style={[styles.iconSlot, isFocused && styles.iconSlotActive]}>
+                            {Icon ? (
+                                <Icon size={22} color={isFocused ? Colors.surface : Colors.muted} />
+                            ) : null}
+                        </View>
+                    </CustomTabBarButton>
                 )
             })}
-        </Animated.View>
+        </View>
     )
 }
 
 export default CustomTabBar;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    wrapper: {
+        position: 'absolute',
+        left: 20,
+        right: 20,
+        height: 70,
+        borderRadius: 999,
+        backgroundColor: Colors.surface,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingHorizontal: 14,
+        shadowColor: Colors.ink,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.08,
+        shadowRadius: 30,
+        elevation: 8,
+    },
+    button: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    iconSlot: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    iconSlotActive: {
+        backgroundColor: Colors.ink,
+    },
+})

@@ -1,16 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { ProfileStackNavigationType } from '../../utils/types'
+import ProfileHomeScreen from './ProfileHome'
+import CreditsScreen from '../credits'
+import LanguageScreen from './Language'
 
-const ProfilePage = () => {
-  const insets = useSafeAreaInsets();
+const ProfileNavigation = () => {
+  const ProfileStack = createNativeStackNavigator<ProfileStackNavigationType>()
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#121212', paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <Text style={{color : 'white'}}>ProfilePage</Text>
-    </View>
+    <ProfileStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='ProfileHome'>
+      <ProfileStack.Screen name='ProfileHome' component={ProfileHomeScreen} />
+      <ProfileStack.Screen name='Credits' component={CreditsScreen} />
+      <ProfileStack.Screen name='Language' component={LanguageScreen} />
+    </ProfileStack.Navigator>
   )
 }
 
-export default ProfilePage;
-
-const styles = StyleSheet.create({})
+export default ProfileNavigation;

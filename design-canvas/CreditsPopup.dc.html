@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #FFFFFF; }
+    a { color: #21212B; } a:hover { color: #40404a; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFFFFF; font-family: 'Inter', system-ui, sans-serif; color: #21212B;">
+
+  <svg width="390" height="844" viewBox="0 0 390 844" style="position: absolute; inset: 0;">
+    <defs>
+      <radialGradient id="cpBlue" cx="20%" cy="15%" r="55%"><stop offset="0%" stop-color="#7FA6E0" stop-opacity="0.9"></stop><stop offset="100%" stop-color="#7FA6E0" stop-opacity="0"></stop></radialGradient>
+      <radialGradient id="cpPurple" cx="80%" cy="30%" r="60%"><stop offset="0%" stop-color="#8C7FE0" stop-opacity="0.95"></stop><stop offset="100%" stop-color="#8C7FE0" stop-opacity="0"></stop></radialGradient>
+      <radialGradient id="cpPink" cx="35%" cy="70%" r="55%"><stop offset="0%" stop-color="#E39BC9" stop-opacity="0.9"></stop><stop offset="100%" stop-color="#E39BC9" stop-opacity="0"></stop></radialGradient>
+      <radialGradient id="cpPurple2" cx="75%" cy="85%" r="50%"><stop offset="0%" stop-color="#8C7FE0" stop-opacity="0.7"></stop><stop offset="100%" stop-color="#8C7FE0" stop-opacity="0"></stop></radialGradient>
+    </defs>
+    <rect width="390" height="844" fill="#FFFFFF"></rect>
+    <g opacity="0.7">
+      <rect width="390" height="844" fill="url(#cpBlue)"></rect>
+      <rect width="390" height="844" fill="url(#cpPurple)"></rect>
+      <rect width="390" height="844" fill="url(#cpPink)"></rect>
+      <rect width="390" height="844" fill="url(#cpPurple2)"></rect>
+    </g>
+  </svg>
+
+  <div style="position: absolute; inset: 0; display: flex; flex-direction: column; padding: 48px 28px 28px;">
+
+    <div style="display: flex; justify-content: flex-end;">
+      <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21212B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+      </div>
+    </div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; text-align: center; padding-bottom: 40px;">
+      <svg width="170" height="160" viewBox="0 0 170 160" fill="none">
+        <circle cx="80" cy="92" r="52" fill="#21212B"></circle>
+        <circle cx="88" cy="82" r="52" fill="#E2825B"></circle>
+        <circle cx="88" cy="82" r="38" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.7"></circle>
+        <path d="M96 56l-14 28h16l-14 28" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M0 -10C0 -2 2 0 10 0C2 0 0 2 0 10C0 2 -2 0 -10 0C-2 0 0 -2 0 -10Z" fill="#E2825B" transform="translate(150 30) scale(1.2)"></path>
+        <path d="M0 -10C0 -2 2 0 10 0C2 0 0 2 0 10C0 2 -2 0 -10 0C-2 0 0 -2 0 -10Z" fill="#E2825B" transform="translate(22 46) scale(0.7)"></path>
+        <path d="M0 -10C0 -2 2 0 10 0C2 0 0 2 0 10C0 2 -2 0 -10 0C-2 0 0 -2 0 -10Z" fill="#E2825B" transform="translate(154 118) scale(0.55)"></path>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-family: 'Fraunces', serif; font-weight: 700; font-size: 32px; line-height: 1.1; letter-spacing: -0.02em; text-wrap: pretty;">You have 11 credits left</div>
+        <div style="font-size: 15.5px; line-height: 1.5; color: #21212B; opacity: 0.7; text-wrap: pretty; max-width: 300px; margin: 0 auto;">Each quiz uses 1 credit. Go Pro for unlimited quizzes — monthly or yearly, cancel anytime.</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="height: 58px; border-radius: 999px; background: #21212B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700;">See plans</div>
+      <div style="height: 48px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #21212B;">Maybe later</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #F5F4F1; }
+    a { color: #21212B; } a:hover { color: #40404a; }
+    * { box-sizing: border-box; }
+    @keyframes qk-spin { to { transform: rotate(360deg); } }
+    @keyframes qk-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  </style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F5F4F1; font-family: 'Inter', system-ui, sans-serif; color: #21212B;">
+
+  <div style="position: absolute; inset: 0; padding: 48px 28px 40px; display: flex; flex-direction: column; justify-content: space-between;">
+
+    <div style="display: flex; justify-content: flex-end;">
+      <div style="height: 36px; padding: 0 14px; border-radius: 999px; background: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 700;">Cancel</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 28px;">
+      <div style="position: relative; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(33,33,43,0.12);"></div>
+        <svg style="position: absolute; inset: 0; animation: qk-spin 2.4s linear infinite;" width="180" height="180" viewBox="0 0 180 180" fill="none">
+          <circle cx="90" cy="90" r="84" stroke="#21212B" stroke-width="4" stroke-linecap="round" stroke-dasharray="120 408"></circle>
+        </svg>
+        <svg style="animation: qk-float 2.8s ease-in-out infinite;" width="130" height="120" viewBox="0 0 130 120" fill="none">
+          <rect x="16" y="26" width="64" height="84" rx="10" fill="#21212B"></rect>
+          <rect x="22" y="18" width="64" height="84" rx="10" fill="#FFFFFF" stroke="#21212B" stroke-width="2"></rect>
+          <rect x="34" y="34" width="34" height="6" rx="3" fill="#21212B"></rect>
+          <rect x="34" y="47" width="40" height="6" rx="3" fill="#21212B" opacity="0.3"></rect>
+          <rect x="34" y="60" width="22" height="6" rx="3" fill="#21212B" opacity="0.3"></rect>
+          <path d="M67 101L105 47" stroke="#21212B" stroke-width="14" stroke-linecap="round"></path>
+          <path d="M72 94L110 40" stroke="#E2825B" stroke-width="14" stroke-linecap="round"></path>
+          <path d="M65 90l-7 22 21-10z" fill="#21212B"></path>
+          <path d="M0 -10C0 -2 2 0 10 0C2 0 0 2 0 10C0 2 -2 0 -10 0C-2 0 0 -2 0 -10Z" fill="#E2825B" transform="translate(112 18) scale(1)"></path>
+          <path d="M0 -10C0 -2 2 0 10 0C2 0 0 2 0 10C0 2 -2 0 -10 0C-2 0 0 -2 0 -10Z" fill="#E2825B" transform="translate(120 66) scale(0.55)"></path>
+        </svg>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
+        <div style="font-family: 'Fraunces', serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em;">Writing your quiz</div>
+        <div style="font-size: 14px; font-weight: 500; color: #6E6E78;">This usually takes under a minute.</div>
+      </div>
+
+      <div style="width: 100%; border-radius: 22px; background: #FFFFFF; padding: 6px 18px; display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; gap: 12px; height: 50px;">
+          <div style="width: 22px; height: 22px; border-radius: 50%; background: #4FAE72; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>
+          </div>
+          <div style="font-size: 14px; font-weight: 600;">Read 12 pages</div>
+        </div>
+        <div style="height: 1px; background: rgba(33,33,43,0.08);"></div>
+        <div style="display: flex; align-items: center; gap: 12px; height: 50px;">
+          <div style="width: 22px; height: 22px; border-radius: 50%; background: #4FAE72; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>
+          </div>
+          <div style="font-size: 14px; font-weight: 600;">Found the key ideas</div>
+        </div>
+        <div style="height: 1px; background: rgba(33,33,43,0.08);"></div>
+        <div style="display: flex; align-items: center; gap: 12px; height: 50px;">
+          <div style="width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid #21212B; border-right-color: transparent; animation: qk-spin 0.9s linear infinite; flex-shrink: 0;"></div>
+          <div style="font-size: 14px; font-weight: 700; flex: 1;">Writing 10 questions</div>
+          <div style="font-size: 13px; font-weight: 700; color: #6E6E78;">6 / 10</div>
+        </div>
+        <div style="height: 1px; background: rgba(33,33,43,0.08);"></div>
+        <div style="display: flex; align-items: center; gap: 12px; height: 50px; opacity: 0.45;">
+          <div style="width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid rgba(33,33,43,0.3); flex-shrink: 0;"></div>
+          <div style="font-size: 14px; font-weight: 600;">Check every answer</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 600; color: #6E6E78;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2825B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+      <span>1 credit will be used when the quiz is ready · 11 left</span>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
