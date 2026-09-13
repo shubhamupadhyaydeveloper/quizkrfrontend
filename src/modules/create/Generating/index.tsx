@@ -94,7 +94,7 @@ const GeneratingScreen = () => {
 
   return (
     <Screen background={Colors.bg}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar barStyle="dark-content" />
       <View style={styles.container}>
         <View style={styles.topRow}>
           <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ringBg: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     borderRadius: 90,
     borderWidth: 3,
     borderColor: Colors.badgeBorder,

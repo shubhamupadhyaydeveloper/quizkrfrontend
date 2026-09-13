@@ -56,7 +56,10 @@ const CustomTabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => 
 
                 const onPress = () => {
                     if (rootScreen) {
-                        navigation.navigate(route.name as never, { screen: rootScreen } as never);
+                        navigation.navigate({
+                            name: route.name,
+                            params: { screen: rootScreen },
+                        } as never);
                         return;
                     }
                     if (!isFocused) {

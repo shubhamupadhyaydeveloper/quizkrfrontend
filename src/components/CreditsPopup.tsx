@@ -24,7 +24,7 @@ const CreditsPopup = ({ visible, credits, onClose, onSeePlans }: CreditsPopupPro
     <Modal visible={visible} animationType="slide" presentationStyle="fullScreen" onRequestClose={onClose}>
       <View style={styles.root}>
         <GradientMesh intensity={0.7} />
-        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+        <StatusBar barStyle="dark-content" />
         <SafeAreaView style={styles.safe}>
           <View style={styles.topRow}>
             <TouchableOpacity style={styles.closeButton} onPress={onClose}>

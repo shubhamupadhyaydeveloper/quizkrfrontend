@@ -123,7 +123,7 @@ export const AppStoreProvider = ({ children }: React.PropsWithChildren) => {
   );
 
   const resetProgress = useCallback(() => {
-    storage.delete(STORAGE_KEY);
+    storage.remove(STORAGE_KEY);
     setStateRaw(EMPTY_STATE);
   }, []);
 

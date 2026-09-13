@@ -89,7 +89,7 @@ const CreateScanScreen = () => {
 
   return (
     <Screen background={Colors.ink} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor={Colors.ink} />
+      <StatusBar barStyle="light-content" />
       <View style={styles.headerRow}>
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>
           <CloseIcon size={20} color={Colors.surface} />
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   capturedPage: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
   },
   emptyHint: {
     alignItems: 'center',

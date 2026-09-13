@@ -126,7 +126,7 @@ const QuizPageScreen = () => {
 
   return (
     <Screen background={Colors.bg}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar barStyle="dark-content" />
       <View style={styles.headerArea}>
         <View style={styles.headerRow}>
           <TouchableOpacity style={styles.iconButton} onPress={confirmQuit}>

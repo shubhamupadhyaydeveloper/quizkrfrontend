@@ -30,7 +30,7 @@ const AuthSignInScreen = () => {
 
   return (
     <Screen background={Colors.surface}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <StatusBar barStyle="dark-content" />
       <GradientMesh />
       <View style={styles.container}>
         <View style={styles.topRow}>

@@ -38,7 +38,7 @@ const SplashScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+      <StatusBar barStyle="light-content" />
       <GradientMesh />
       <Logo size={moderateScale(96)} />
       <View style={styles.copy}>

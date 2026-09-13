@@ -44,7 +44,7 @@ const SavedScreen = () => {
 
   return (
     <Screen background={Colors.bg}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar barStyle="dark-content" />
       <FlatList
         data={visible}
         keyExtractor={item => item.quiz.id}

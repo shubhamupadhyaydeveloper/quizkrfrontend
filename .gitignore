@@ -38,6 +38,9 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
+# Upload keystores never belong in the repo — EAS holds ours, with a backup off-machine.
+*.jks
+credentials.json
 
 # node.js
 #

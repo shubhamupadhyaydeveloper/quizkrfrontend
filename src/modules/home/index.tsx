@@ -61,7 +61,7 @@ const HomeScreen = () => {
 
   return (
     <Screen background={Colors.bg}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar barStyle="dark-content" />
       <CreditsPopup
         visible={showPopup}
         credits={credits}

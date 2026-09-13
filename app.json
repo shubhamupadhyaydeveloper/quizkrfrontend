@@ -1,4 +1,15 @@
 {
   "name": "Quizkr",
-  "displayName": "Quizkr"
+  "displayName": "Quizkr",
+  "expo": {
+    "name": "Quizkr",
+    "slug": "Quizkr",
+    "owner": "shubham_upadhyay",
+    "version": "2.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "c5383d7c-e94d-4b04-90fd-3c5e26c53bd3"
+      }
+    }
+  }
 }

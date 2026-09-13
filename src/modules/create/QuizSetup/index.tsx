@@ -79,7 +79,7 @@ const QuizSetupScreen = () => {
 
   return (
     <Screen background={Colors.bg}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.bg} />
+      <StatusBar barStyle="dark-content" />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.headerRow}>
           <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>

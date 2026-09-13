@@ -1,6 +1,6 @@
-import {MMKV} from 'react-native-mmkv';
+import {createMMKV} from 'react-native-mmkv';
 
-export const storage = new MMKV({
+export const storage = createMMKV({
   id: 'auth-store',
   encryptionKey: 'some_encryption_key',
 });
@@ -14,6 +14,6 @@ export const mmkvStorage = {
     return value ?? null;
   },
   removeItem: (key: string) => {
-    storage.delete(key);
+    storage.remove(key);
   },
 };
